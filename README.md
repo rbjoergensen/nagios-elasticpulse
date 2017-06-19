@@ -5,6 +5,7 @@ I got tired of not having the plugins i wanted so i am making a series of Nagios
 I removed the .sh extension and moved it to the /usr/local/nagios/libexec folder.
 
 I also made it executeable bu Nagios
+
 `chmod +x /usr/local/nagios/libexec/elasticpulse_indexcount`
 
 ```bash
