@@ -4,9 +4,16 @@ I got tired of not having the plugins i wanted so i am making a series of Nagios
 ## Example of a rule i Nagios.
 I removed the .sh extension and moved it to the /usr/local/nagios/libexec folder.
 
-I also made it executeable bu Nagios
+I also made it executeable by Nagios
 
 `chmod +x /usr/local/nagios/libexec/elasticpulse_indexcount`
+
+## The script takes/needs the following arguments.
+- -H = Elastic hostname eg. elastic.mydomain.com or 192.168.0.55:9200.
+- -t = Timeback, the amount of time to look back when counting new entries.
+- -u = Credentials, username and password eg. elastic:changeme.
+- -i = Indexname eg. notifications
+- -t = datatype of your index eg. logdata or serverdata
 
 ```sh
 define host{
@@ -27,7 +34,7 @@ define host{
 
 define command{
     command_name            check_indexactive
-    command_line            $USER1$/elasticpulse_indexcount
+    command_line            $USER1$/elasticpulse_indexcount -H $ARG1$ -t $ARG2$ -u $ARG3$ -i $ARG4$ -d $ARG5$
 }
 
 define service{
