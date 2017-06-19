@@ -10,30 +10,30 @@ I also made it executeable bu Nagios
 
 ```sh
 define host{
-        name                    myelasticserver
-        host_name               myelasticserver
-        use                     generic-host
-        address                 192.168.0.55
-        check_period            24x7
-        check_interval          10
-        retry_interval          3
-        max_check_attempts      5
-        notification_period     24x7
-        notification_options    d,u,r
-        notification_interval   360
-        contact_groups          mycontacts
-        check_command           check-host-alive
+    name                    myelasticserver
+    host_name               myelasticserver
+    use                     generic-host
+    address                 192.168.0.55
+    check_period            24x7
+    check_interval          10
+    retry_interval          3
+    max_check_attempts      5
+    notification_period     24x7
+    notification_options    d,u,r
+    notification_interval   360
+    contact_groups          mycontacts
+    check_command           check-host-alive
 }
 
 define command{
-    command_name    check_indexactive
-    command_line    $USER1$/elasticpulse_indexcount
+    command_name            check_indexactive
+    command_line            $USER1$/elasticpulse_indexcount
 }
 
 define service{
-        use                     generic-service
-        host_name               myelasticserver
-        service_description     Test_plugin
-        check_command           check_indexactive
+    use                     generic-service
+    host_name               myelasticserver
+    service_description     check_index
+    check_command           check_indexactive
 }
 ```
