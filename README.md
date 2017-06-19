@@ -41,6 +41,6 @@ define service{
     use                     generic-service
     host_name               myelasticserver
     service_description     check_index
-    check_command           check_indexactive
+    check_command           check_indexactive!elastic.mydomain.com!15m!elastic:changeme!notifications!logdata
 }
 ```
