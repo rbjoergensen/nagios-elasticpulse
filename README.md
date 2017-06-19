@@ -13,7 +13,7 @@ I also made it executeable by Nagios
 - -t = Timeback, the amount of time to look back when counting new entries.
 - -u = Credentials, username and password eg. elastic:changeme.
 - -i = Indexname eg. notifications
-- -t = datatype of your index eg. logdata or serverdata
+- -d = datatype of your index eg. logdata or serverdata
 
 ```sh
 define host{
