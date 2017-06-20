@@ -13,7 +13,8 @@ I also made it executeable by Nagios
 - -t = Timeback, the amount of time to look back when counting new entries.
 - -u = Credentials, username and password eg. elastic:changeme.
 - -i = Indexname eg. notifications
-- -d = datatype of your index eg. logdata or serverdata
+- -d = Datatype of your index eg. logdata or serverdata
+- -k = Name of date value in elastic index
 
 ```sh
 define host{
@@ -34,13 +35,13 @@ define host{
 
 define command{
     command_name            check_indexactive
-    command_line            $USER1$/elasticpulse_indexcount -H $ARG1$ -t $ARG2$ -u $ARG3$ -i $ARG4$ -d $ARG5$
+    command_line            $USER1$/elasticpulse_indexcount -H $ARG1$ -t $ARG2$ -u $ARG3$ -i $ARG4$ -d $ARG5$ -l $ARG6$
 }
 
 define service{
     use                     generic-service
     host_name               myelasticserver
     service_description     check_index
-    check_command           check_indexactive!elastic.mydomain.com!15m!elastic:changeme!notifications!logdata
+    check_command           check_indexactive!elastic.mydomain.com!15m!elastic:changeme!notifications!logdata!indexdate
 }
 ```
