@@ -26,7 +26,6 @@ done
 #echo $credentials
 #echo $indexname
 #echo $datatype
-#echo $datename
 
 index_count=`curl -s -XGET -u $credentials $eshost'/'$indexname'/'$datatype'/_search' \
              -H 'Content-Type: application/json' -d '{"query": { "range" : { "'$datename'" : { "gte" : "now-'$timeback'", "lt" : "now"}}}}' | \
@@ -37,19 +36,22 @@ index_count=`curl -s -XGET -u $credentials $eshost'/'$indexname'/'$datatype'/_se
 #Debug value if you should need to check functionality.
 #index_count=-11
 
+# The echo message is basically "Status Information | Performance data"
+# Split up by the | symbol.
+
 if ((5<=$index_count))
 then
-    echo "OK - Index count is $index_count."
+    echo "OK - Index count is $index_count in the last $timeback. | $index_count"
     exit 0
 elif ((1<=$index_count && $index_count<=4))
 then
-    echo "WARNING - Index count is $index_count."
+    echo "WARNING - Index count is $index_count in the last $timeback. | $index_count"
     exit 1
 elif ((0==$index_count))
 then
-    echo "CRITICAL - Index count is $index_count."
+    echo "CRITICAL - Index count is $index_count in the last $timeback. | $index_count"
     exit 2
 else
-    echo "UNKNOWN - Index count is $index_count."
+    echo "UNKNOWN - Index count is $index_count in the last $timeback. | $index_count"
     exit 3
 fi
