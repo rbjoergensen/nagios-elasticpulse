@@ -20,7 +20,7 @@ do
  esac
 done
 
-# Debug code #
+# Debug
 #echo $eshost
 #echo $timeback
 #echo $credentials
@@ -31,13 +31,9 @@ index_count=`curl -s -XGET -u $credentials $eshost'/'$indexname'/'$datatype'/_se
              -H 'Content-Type: application/json' -d '{"query": { "range" : { "'$datename'" : { "gte" : "now-'$timeback'", "lt" : "now"}}}}' | \
              python -c "import sys, json; print json.load(sys.stdin)['hits']['total']"`
 
-#echo "Index Count: $index_count"
-
-#Debug value if you should need to check functionality.
-#index_count=-11
-
-# The echo message is basically "Status Information | Performance data"
-# Split up by the | symbol.
+# echo "Index Count: $index_count"
+# The echo message is "Status Information | Performance data"
+# Split up by |
 
 if ((5<=$index_count))
 then
