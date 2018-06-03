@@ -1,7 +1,7 @@
 # Nagios-Elasticpulse
 I got tired of not having the plugins i wanted so i am making a series of Nagios plugins to check the document counts in an Elasticsearch index. It will tell me if a job stops indexing documents in a given timespan...
 
-## Example of a rule i Nagios.
+## Example of a rule in Nagios.
 I removed the .sh extension and moved it to the /usr/local/nagios/libexec folder.
 
 I also made it executeable by Nagios
